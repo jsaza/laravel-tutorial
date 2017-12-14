@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //スキーマの文字列の長さを190にセット
+        \Schema::defaultStringLength(191);
     }
 
     /**
