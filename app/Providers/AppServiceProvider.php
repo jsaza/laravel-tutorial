@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //スキーマの文字列の長さを190にセット
         \Schema::defaultStringLength(191);
+        //httpsアクセスを有効にする
+        \URL::forceScheme('https');
     }
 
     /**
