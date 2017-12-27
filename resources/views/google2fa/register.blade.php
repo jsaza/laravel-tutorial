@@ -12,10 +12,12 @@
                     <div>
                         <img src="{{ $QR_Image }}">
                     </div>
-                    <p>You must set up your Google Authenticator app before continuing. You will be unable to login otherwise</p>
-                    <div>
-                        <a href="/complete-registration"><button class="btn-primary">Complete Registration</button></a>
-                    </div>
+                    @if (!@$reauthenticating) {{-- add this line --}}
+                        <p>You must set up your Google Authenticator app before continuing. You will be unable to login otherwise</p>
+                        <div>
+                            <a href="/lara/complete-registration"><button class="btn-primary">Complete Registration</button></a>
+                        </div>
+                    @endif {{-- and this line --}}
                 </div>
             </div>
         </div>
