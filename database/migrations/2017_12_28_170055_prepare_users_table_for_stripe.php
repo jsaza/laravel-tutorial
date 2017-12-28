@@ -13,7 +13,7 @@ class PrepareUsersTableForStripe extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //stripe
             $table->string('stripe_id')->nullable();
             $table->string('card_brand')->nullable();
@@ -29,7 +29,7 @@ class PrepareUsersTableForStripe extends Migration
      */
     public function down()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //stripe
             $table->dropColumn('stripe_id');
             $table->dropColumn('card_brand');
