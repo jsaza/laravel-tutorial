@@ -61,6 +61,13 @@
                             </div>
                         </div>
                     </form>
+                    
+                    <hr>
+
+                    <div style="text-align: center">
+                        <a href="/lara/login/github"    class="btn btn-default btn-md">Login with Github</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>
