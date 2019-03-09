@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -12,26 +11,26 @@ class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | ユーザ登録コントローラ
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | このコントローラは新しいユーザの登録、バリデーション、生成を処理する。
+    | デフォルトで、このコントローラはトレイトを使用しており、これにより
+    | 他のコードを追加せずとも、この機能を提供している。
     |
     */
 
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
+     * 登録後のユーザリダイレクト先
      *
      * @var string
      */
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * 新しいコントローラインスタンスの生成
      *
      * @return void
      */
@@ -41,7 +40,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * 送られてきたユーザ登録リクエストのバリデター取得
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -49,14 +48,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * ユーザ登録成功後の新しいユーザインスタンス取得
      *
      * @param  array  $data
      * @return \App\User
@@ -66,7 +65,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
     }
 }
