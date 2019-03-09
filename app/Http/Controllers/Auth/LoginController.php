@@ -9,26 +9,26 @@ class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | ログインコントローラ
+    | Login Controller
     |--------------------------------------------------------------------------
     |
-    | このコントローラはアプリケーションの認証ユーザを処理し、
-    | トップページへリダイレクトする。コントローラはアプリケーションに
-    | 機能を便利に提供するためにトレイトを使用している
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
     |
     */
 
     use AuthenticatesUsers;
 
     /**
-     * ログイン後のユーザリダイレクト先
+     * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '/home';
 
     /**
-     * 新しいコントローラインスタンスの生成
+     * Create a new controller instance.
      *
      * @return void
      */

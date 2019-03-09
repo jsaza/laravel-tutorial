@@ -9,26 +9,26 @@ class ResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | パスワードリセットコントローラ
+    | Password Reset Controller
     |--------------------------------------------------------------------------
     |
-    | このコントローラはパスワードリセットリクエストの処理に責任を持ち、その
-    | 振る舞いを取り込むために、シンプルなトレイトを使用しています。望み通りに
-    | 調整するため、このトレイトを使い、メソッドをオーバーライドしてください。
+    | This controller is responsible for handling password reset requests
+    | and uses a simple trait to include this behavior. You're free to
+    | explore this trait and override any methods you wish to tweak.
     |
     */
 
     use ResetsPasswords;
 
     /**
-     * パスワードをリセットした後のユーザリダイレクト先
+     * Where to redirect users after resetting their password.
      *
      * @var string
      */
     protected $redirectTo = '/home';
 
     /**
-     * 新しいコントローラインスタンスの生成
+     * Create a new controller instance.
      *
      * @return void
      */
