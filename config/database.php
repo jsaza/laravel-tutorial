@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | デフォルトデータベース接続名
+    | Default Database Connection Name
     |--------------------------------------------------------------------------
     |
-    | ここでは全てのデータベース動作で用いられるデフォルトデータベース接続を
-    | 指定することができます。もちろん、データベースライブラリーを使用することで
-    | 多くの接続を一度に使うことができます。
+    | Here you may specify which of the database connections below you wish
+    | to use as your default connection for all database work. Of course
+    | you may use many connections at once using the Database library.
     |
     */
 
@@ -17,17 +17,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | データベース接続
+    | Database Connections
     |--------------------------------------------------------------------------
     |
-    | ここではアプリケーションで用いる各データベース接続を設定します。
-    | もちろん、以下はLaravelでサポートされているデータベースシステムの
-    | サンプル設定で、簡単に開発ができることを示すため設置してあります。
+    | Here are each of the database connections setup for your application.
+    | Of course, examples of configuring each database platform that is
+    | supported by Laravel is shown below to make development simple.
     |
     |
-    | Laravelで動作する全てのデータベースはPHP PDO機能上で動作します。
-    | ですから開発を始める前に選択したデータベースのドライバーが開発機に
-    | インストールされていることを確認してください。
+    | All database work in Laravel is done through the PHP PDO facilities
+    | so make sure you have the driver for your particular database of
+    | choice installed on your machine before you begin development.
     |
     */
 
@@ -37,6 +37,7 @@ return [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
         'mysql' => [
@@ -50,8 +51,12 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'options' => array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]),
         ],
 
         'pgsql' => [
@@ -63,6 +68,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
@@ -76,18 +82,19 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'prefix_indexes' => true,
         ],
 
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | マイグレーションリポジトリテーブル
+    | Migration Repository Table
     |--------------------------------------------------------------------------
     |
-    | こで指定したテーブルに、アプリケーションで実行済みの全マイグレーション
-    | 情報が保存されます。この情報を使用することで、ディスク上の
-    | どのマイグレーションが未実行なのかを判断することができます。
+    | This table keeps track of all the migrations that have already run for
+    | your application. Using this information, we can determine which of
+    | the migrations on disk haven't actually been run in the database.
     |
     */
 
@@ -95,24 +102,35 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Redisデータベース
+    | Redis Databases
     |--------------------------------------------------------------------------
     |
-    | Redisはオープンソースで、早く、進歩的なキー／値保存システムであり
-    | APCやMemecachedのような典型的なキー／値システムよりも、豊富なコマンドが
-    | 用意されています。Laravelはこれを使用しやすくします。
+    | Redis is an open source, fast, and advanced key-value store that also
+    | provides a richer body of commands than a typical key-value system
+    | such as APC or Memcached. Laravel makes it easy to dig right in.
     |
     */
 
     'redis' => [
 
-        'client' => 'predis',
+        'client' => env('REDIS_CLIENT', 'predis'),
+
+        'options' => [
+            'cluster' => env('REDIS_CLUSTER', 'predis'),
+        ],
 
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
-            'database' => 0,
+            'database' => env('REDIS_DB', 0),
+        ],
+
+        'cache' => [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', 6379),
+            'database' => env('REDIS_CACHE_DB', 1),
         ],
 
     ],

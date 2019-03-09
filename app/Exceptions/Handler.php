@@ -27,9 +27,7 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * 例外をレポート、もしくはログ
-     *
-     * ここはSentryやBugsnagなどに例外を送るために良い場所
+     * Report or log an exception.
      *
      * @param  \Exception  $exception
      * @return void
@@ -40,7 +38,7 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * HTTPレスポンスに対応する例外をレンダー
+     * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
